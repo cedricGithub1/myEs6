@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // (function(){
+    //     console.log(0o11===011);
+    // })()
+    // console.log(Number('0b111'))
+    // console.log(Number('0o10'))
+    // es6新增 number对象 isFinite()检测是否为有限的
+    // console.log(Number.isFinite(NaN))
+    // number对象 isNaN()检测是否为NaN
+    console.log(Number.isNaN(NaN))
+    // es6中将全局方法parseInt()和parseFloat(),移值到Number对象上面，行为保持不变
+    console.log(Number.parseInt('12.23'))
+    console.log(Number.parseFloat('123.45698#2'))
+    // Number.isInteger()用来判断一个值是否为整数
+    console.log(Number.isInteger(25.1))
+    // Math.trunc用于去除一个数的小数部分返回整数部分
+    console.log(Math.trunc(-9.3256225))
+    // 对于非数值Math.trunc内部使用Nunber方法将其转化为数值
+    console.log(Math.trunc(false))
+    // 对于空值和无法截取的整数的值返回NaN
+    console.log(Math.trunc(NaN))
+    // Math.sign()方法判断正数负数还是零，对非数值回先将其转换为数值
+    // 参数为正数返回+1，参数为负数返回-1 参数为0返回0 参数为-0返回-0 其他的值返回NaN
+    console.log(Math.sign(-5))
+    console.log(Math.sign(5))
+    console.log(Math.sign(0))
+    console.log(Math.sign(-0))
+    console.log(Math.sign(NaN))
+    // Math.cbrt()计算一个数的立方根
+    console.log(Math.cbrt(27))
+    
+</script>
