@@ -213,22 +213,23 @@
 //['outer']
 // 嵌套的箭头函数
 // es5写法
-function insert(value){
-    return {into:function(array){
-        return {after:function(afterValue){
-            array.splice(array.indexOf(afterValue)+1,0,value);
-            return array;
-        }};
-    }};
-}
+// function insert(value){
+//     return {into:function(array){
+//         return {after:function(afterValue){
+//             array.splice(array.indexOf(afterValue)+1,0,value);
+//             return array;
+//         }};
+//     }};
+// }
 // es6写法
 // insert(2).into([1,3]).after(1);
-let insert=(value)=>({
-    into:(array)=>({
-        after:(afterValue)=>{
-            array.splice(array.indexOf(afterValue)+1,0,value);
-            return array;
-        }
-    })
-})
+// let insert=(value)=>({
+//     into:(array)=>({
+//         after:(afterValue)=>{
+//             array.splice(array.indexOf(afterValue)+1,0,value);
+//             return array;
+//         }
+//     })
+// })
+// 测试
 </script>
