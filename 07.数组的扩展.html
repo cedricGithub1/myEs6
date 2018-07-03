@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  <li>7</li>
+  <li>8</li>
+</ul>
+</body>
+
+</html>
+<script>
+    // 将数组转为用逗号分离的参数序列
+    // console.log(...[1, 2, 3])
+    // console.log(1, ...[2, 3, 4], 5)
+    // // 该运算符主要用于函数调用
+    // function push(array, ...items) {
+    //     array.push(...items);
+    // }
+
+    // function add(x, y, z) {
+    //     console.log(x + y + z)
+    // }
+    // const nums = [4, 2, 6]
+    // add(...nums)
+    // 扩展运算符后面可以放置表达式
+    // const arr =[...(x>0?['a']:[],'b')]
+    // 扩展运算符后面是空数组不产生任何效果
+    // 地带数组的apply方法
+    // es5的写法
+    // function f(x,y,z){
+
+    // }
+    // var args=[0,1,2];
+    // f.apply(null,args);
+    // es6的写法
+    // function f(x,y,z){
+    //     // ...
+    // }
+    // let args=[0,1,2];
+    // f(...args);
+    // 扩展运算符的应用
+    // 复制数组
+    // const a1=[1,2];
+    // const a2=a1;
+    // a2[0]=2;
+    // console.log(a1);
+    // console.log(a2)
+    // var name1 = "Mike";
+    // var age1 = 20;
+    // var message1 = `hello,${name1},your age is ${age1}`; //同理，这里的两个点是键盘上数字键1左边的按键，而不是单引号哦
+    // alert(message1);
+    console.log(...[1, 2, 3])
+    console.log(1, ...[2, 3, 4], 5)
+    function push (array, ...items) {
+      array.push(...items)
+    }
+    function add (x, y) {
+      return x + y;
+    }
+    const numbers = [4, 38]
+    console.log(add(...numbers))
+    function f(v, w, x, y, z) {}
+    // const arr = [
+    //   ...(x > 0 ? ['a'] : []),
+    //   'b',
+    // ];
+    console.log([...[1, 2, 3, 4], 6])
+    console.log(Math.max.apply(null, [14, 3, 77]))
+    console.log(Math.max(...[14, 3, 77]))
+    console.log(Math.max(14, 3, 77))
+    // var arr1 = [0, 1, 2];
+    // var arr2 = [3, 4, 5];
+    // Array.prototype.push.apply(arr1, arr2);
+    // console.log(arr1)
+    let arr1 = [0, 1, 2];
+    let arr2 = [3, 4, 5];
+    arr1.push(...arr2);
+    console.log(arr1);
+    console.log(new (Date.bind.apply(Date, [null, 2015, 1, 1])))
+    console.log(new Date(...[2015, 1, 1]))
+    // const a1 = [1, 2];
+    // const a2 = a1;
+
+    // a2[0] = 2;
+    // a1
+
+    // const a1 = [1, 2];
+    // const a2 = a1.concat();
+    // a2[0] = 2;
+    // a1
+    
+    // const a1 = [1, 2];
+    // const a2 = [...a1];
+    // const [...a2] = a1;
+    // let more = [3, 4, 5, 6]
+    // [1, 2].concat(more)
+    // let arrNew1 = [1, 2, ...more]
+    // var arr1 = ['a', 'b'];
+    // var arr2 = ['c'];
+    // var arr3 = ['d', 'e'];
+    // let arrNew = [...arr1, ...arr2, ...arr3]
+
+    // a = list[0], rest = list.slice(1)
+    // let arr = [a, ...rest] = list
+    // const [first, ...rest] = [1, 2, 3, 4, 5];
+    // first
+    // rest
+
+    // // const [first, ...rest] = []
+    // const [first, last, ...middle] = [1, 2, 3, 4, 5];
+    // console.log(first)
+    // console.log(middle)
+    // console.log(last)
+    // function length(str) {
+    //   return [...str].length
+    // }
+    // console.log(length('x\uD83D\uDE80y'))
+    // let str = 'abc'
+    // str.split('').reverse().join('')
+    // console.log(str)
+    // console.log([...str].reverse().join(''))
+    // let nodelist = document.querySelectorAll('li')
+    // let arraydom = [...nodelist]
+    // console.log(arraydom)
+    // let map = new Map([
+    //   [1,'one'],
+    //   [2,'two'],
+    //   [3,'three']
+    // ]);
+    // let arr = [...map.keys()];
+    // console.log(arr)
+    // const go = function*(){
+    //   yield 1;
+    //   yield 2;
+    //   yield 3;
+    // }
+    // console.log([...go()])
+    // function* idMaker(){
+    //   let index = 0;
+    //   while(true)
+    //     yield index++;
+    // }
+    // let gen = idMaker(); // "Generator { }"
+    // console.log(gen.next().value); 
+    // // 0
+    // console.log(gen.next().value); 
+    // // 1
+    // console.log(gen.next().value); 
+    // let arrayLike = {
+    //   '0': 'a',
+    //   '1': 'b',
+    //   '2': 'c',
+    //   'length' :  3
+    // }
+    // // es5
+    // console.log([].slice.call(arrayLike))
+    // console.log(Array.from(arrayLike))
+    // Array.from()
+    // let ps = document.querySelectorAll('li')
+    // let newarr = Array.from(ps).filter(p => {
+    //   return p.textContent.length >= 0
+    // })
+    // console.log(newarr)
+    // console.log(Array.from('hello'))
+    // let nameSet = new Set(['a', 'b'])
+    // console.log(Array.from(nameSet))
+    // console.log(Array.from([1,2,3]))
+    // console.log(Array.from({length: 3}))
+    // Array.from(arrayLike, x=> x*x);
+    // Array.from(arrayLike).map(x => x*x);
+    // const arr = [1, 2, 3]
+    // console.log(Array.from(arr, (x) => x*x))
+    // console.log(Array.from([1,,2,,3],(n)=> n || 0))
+    // function typesOf () {
+    //   return Array.from(arguments, value => typeof value)
+    // }
+    // console.log(typesOf(null, [], NaN))
+    // console.log(Array.from({length: 2}, ()=>'jack'))
+    // function countSymbols(string){
+    //   return Array.from(string).length
+    // }
+    // console.log(Array.of(3,11,8))
+    // console.log(Array.of(3))
+    // console.log(Array.of(3).length)
+    const  compute=(item1,item2)=>{
+      if (item1%item2 === 0) {
+        return `整除`
+      } else {
+        return `余数为${item1%item2}`
+      }
+    }
+    console.log(compute(121651213131313131314453535353535353553535,1131433535353535353535))
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

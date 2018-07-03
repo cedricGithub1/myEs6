@@ -1,0 +1,49 @@
+version: "2"
+
+services:
+  nginx:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    networks:
+      - yzcx
+    depends_on:
+      - tomcat
+    environment:
+      - BACKEND=tomcat:80
+    ports:
+      - "9080:80"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+  tomcat:
+    restart: always
+    build:
+      context: .
+      dockerfile: tomcat.Dockerfile
+    networks:
+      - yzcx 
+    depends_on:
+      - mysql
+    ports:
+      - "9090:80"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+  mysql:
+    restart: always
+    networks:
+      - yzcx
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    command: mysqld --innodb_file_per_table
+    ports:
+      - "3336:3306"
+    volumes:
+      - /root/yzcx/mysql_data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+networks:
+  yzcx:
+    external: false

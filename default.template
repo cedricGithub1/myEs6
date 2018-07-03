@@ -1,0 +1,23 @@
+upstream backend {
+    server ${BACKEND};
+}
+
+server {
+      listen   80;
+      server_name localhost;
+      root   /dist;
+      index  index.html;
+
+      # 后台接口
+      location ^~/yzcx/ {
+            proxy_pass http://backend;
+      }
+      # 前端资源
+      location ~*\.(html|js|svg|css|png|woff2|woff|ttf|jpg|gif) {
+            allow all;
+      }
+      # 前端路由
+      location / {
+            rewrite / /index.html break;
+      }
+}

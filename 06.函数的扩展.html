@@ -231,4 +231,41 @@
 //         }
 //     })
 // })
+// 部署管道机智 （pipeline）前一个函数的输出是后一个函数的输入
+// const pipeline=(...funcs)=>
+// val=>funcs.reduce((a,b)=>b(a),val);
+// const plus1=a=>a+1;
+// const mult2=a=>a*2;
+// const addThenMult=pipeline(plus1,mult2);
+// addThenMult(5)
+// const plus1=a=>a+1;
+// const mult2=b=>b*2;
+// console.log(mult2(plus1(5)))
+// 演算的写法
+// 箭头函数让setTimeout里面的this 绑定定义时所在的作用域而不是指向运行时所在的作用域
+// function Timer(){
+//     this.s1=0;
+//     this.s2=0;
+//     // 箭头函数
+//     setInterval(()=>this.s1++,1000);
+//     // 普通函数
+//     setInterval(function(){
+//         this.s2++;
+//     },1000);
+// }
+// var timer =new Timer();
+// setTimeout(() => console.log('s1: ', timer.s1), 3100);
+// setTimeout(() => console.log('s2: ', timer.s2), 3100);
+// function foo(){
+//     setTimeout(()=>{
+//         console.log('args:',arguments);
+//     },100);
+// }
+// foo(2,4,5,6)
+// 双冒号运算符
+
+
+// 尾调用优化
+
+
 </script>

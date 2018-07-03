@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 属性简洁表示
+    const foo = 'bar'
+    const baz = { foo }
+    console.log(baz)
+    // 属性的赋值器和取值器
+    const cart = {
+        _wheels: 4,
+        get wheels () {
+            return this._wheels
+        },
+        set wheels (value) {
+            if (value < this._wheels) {
+                throw new Error ('数值太小了！')
+            }
+            this._wheels = value
+        }
+    }
+    cart.wheels = 5
+    console.log(cart.wheels)
+    // 属性名表达式
+    // var obj = {}
+    // obj.foo = true
+    // obj['a'+ 'bc'] = 123
+    // let peopKey = 'efg'
+    // obj[peopKey] = false
+    // obj['h' + 'ello'] = () => {
+    //     return 'hi'
+    // }
+    // console.log(obj.hello())
+    // // 方法的name属性
+    // const person = {
+    //     sayName () {
+    //         console.log('hello!')
+    //     }
+    // }
+    // console.log(person.sayName.name)
+    const obj = {
+        get foo () {},
+        set foo (x) {},
+        num: 9
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(obj, 'foo')
+    // console.log(descriptor.get.name)
+    // console.log(descriptor.set.name)
+    const key1 = Symbol('description')
+    const key2 = Symbol()
+    console.log(key1)
+    console.log(key2)
+    // 新数据类型symbol
+    var mySymbol = Symbol()
+    var a = {}
+    a[mySymbol] = 'hello!'
+    var a = {}
+    Object.defineProperty(a, mySymbol, {value: 'Hello!'})
+    a[mySymbol] //'hello!'
+    var sym1 = Symbol();
+    //  object.is ()
+    console.log(Object.is('foo','foo'))
+    console.log(Object.is({},{}))
+    console.log(+0 === -0)
+    console.log(NaN === NaN)
+    console.log(Object.is(NaN,NaN))
+    //  Object.assign() 对象合并
+    const target = { a: 1, d: 5}
+    const sourcel = { b: 2, c: 2 }
+    const source2 = { c: 3, d: 2 }
+    Object.assign(target, sourcel, source2)
+    console.log(target)
+    const obj1 = { a: 2 }
+    console.log(Object.assign(obj1))
+    console.log(Object.assign(2))
+    const v1 = 'abc'
+    const v2 = true
+    const v3 = 10
+    const obj2 = Object.assign({}, v1, v2, v3)
+    console.log(obj2)
+    console.log(Object.assign({b: 'c'},
+        Object.defineProperty({}, 'invisible', {
+            enumerable: false,
+            value: 'hello'
+        })
+    ))
+    // 浅拷贝
+    const obj3 = { a: {b: 1}};
+    const obj4 = Object.assign({}, obj3);
+    obj3.a.b = 2;
+    console.log(obj4.a.b);
+    // 同属性名替换
+    const target1 = { a: { b: 'c', d: 'e'} }
+    const source1 = { a: {b: 'hello'} }
+    Object.assign(target1, source1)
+    console.log(Object.assign([1,2,3], [4,5]))
+    // 取值函数的处理
+    const source3 = {
+        get foo() {
+            return 1
+        }
+    }
+    const target3 = {}
+    console.log(Object.assign(target3, source3))
+    // 为对象添加属性
+    class Point {
+        constructor (x, y) {
+            Object.assign(this, {x, y})
+        }
+    }
+    // 为对象添加方法 只有引用类型才有prototype
+    // const obj5 = new Object()
+    // Object.assign(Object.prototype, {
+    //     someMethod(arg1, arg2) {},
+    //     anotherMethod() {}
+    // })
+    // console.log(obj5.someMethod)
+    // 克隆对象
+    function clone(origin) {
+      return Object.assign({}, origin)
+    }
+    // 保持持续继承链
+    function clone (origin) {
+      let originProto = Object.getPrototypeOf(origin)
+      return Object.assign(Object.create(originProto), origin)
+    }
+    // 合并多个对象
+    const obj6 = { name: 'cedricl' }
+    const obj7 = [{ age: '18' }, { id: '1' }]
+    const merge = Object.assign(obj6, ...obj7)
+    console.log(merge)
+    // 为属性值指定默认值
+    const DEFAULTS = {
+      url: {
+        logLevel: 0,
+        outputFormat: 'html',
+        port: 7070
+      }
+    }
+    function processContent(options) {
+      options = Object.assign({}, DEFAULTS, options)
+      console.log(options)
+    }
+    processContent({url: {port: 8000}})
+    // 属性的可枚举和遍历
+    let obj8 = { foo: 123 }
+    console.log(Object.getOwnPropertyDescriptor(obj8, 'foo'))
+    Object.getOwnPropertyDescriptor(Object.prototype, 'toString').enumerable
+    Object.getOwnPropertyDescriptor([], 'length').enumerable
+    Object.getOwnPropertyDescriptor(class { foo() {} }.prototype, 'foo').enumerable
+    // 属性的遍历
+    //  for in 
+    let obj9  =  {
+      price: 10,
+      name: '猴子',
+      id: 1,
+      date: '180627',
+      [Symbol('a')]: 0,
+      3:10
+		}
+    for( key in obj9 ) {
+      console.log(obj9[key])
+    }
+    // Object.keys(obj)
+    console.log(Object.keys(obj9))
+    // Object.getOwnPropertySymbols(obj)
+    console.log(Object.getOwnPropertySymbols(obj9))
+    // Reflect.ownKeys(obj)
+    console.log(Reflect.ownKeys(obj9))
+    const obj10 = {
+      foo: 123,
+      get bar() { return 'abc' }
+    }
+    // 某个对象属性的描述对象
+    console.log(Object.getOwnPropertyDescriptors(obj10))
+    const obj11 = {
+      set foo(value) {
+        console.log(value)
+      }
+    }
+    const target2 = {}
+    console.log(Object.assign(target2,obj11))
+    console.log(Object.getOwnPropertyDescriptor(target2,'foo'))
+    const shallowMerge = (target, source) => Object.defineProperties(
+      target,
+      Object.getOwnPropertyDescriptors(source)
+    )
+    // Object.getOwnPropertyDescriptors 将新属性克隆到一个新的对象 这属于浅拷贝
+    const clone1 = Object.create(null,Object.getOwnPropertyDescriptors(obj9))
+    console.log(clone1)
+    const shallowMerge1 =(obj) => Object.create(
+      Object.getPrototypeOf(obj),
+      Object.getOwnPropertyDescriptors(obj)
+    )
+    
+</script>
